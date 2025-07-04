@@ -12,10 +12,14 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:3000", "https://inovant-imx1v6m7r-viralborana2s-projects.vercel.app/"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/products", productRoutes);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
